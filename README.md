@@ -44,26 +44,27 @@ Make sure you have the following installed on your machine:
 
 - [Node.js] (v14 or higher)
 - [Docker]
-- [FFmpeg] (ensure it's in your PATH)
+- [FFmpeg] (ensure it's in your PATH) (This is only for testing FFmpeg outside docker.)
 - A Cloudinary account (to store audio files)
 
 ### Installation
 
 1. Clone the repository
-2. Add the docker compose file on the main directory
-3. Run the "docker-compose up --build" command
+2. Run the "docker-compose up --build" command using docker-compose.yml file available in the main directory. 
 
 ### Building and Running the Application
-After you build the docker images for both services (videotoaudio and uploadtostorage), you can access both of them using the following endpoints locally.
+After you build the docker images for both services (videotoaudio and uploadtostorage), you can access both using the following endpoints locally.
 The project implements the services mentioned above as micro-services.
 
-1. http://localhost:3002/api/v1/uploader [POST] - You don't have to use this endpoint manually since the other service uses it to upload to cloudinary once the audio
+FFmpeg will be installed automatically using Docker specific to the videotoaudio service since the services need it.
+
+1. http://localhost:3002/api/v1/uploader [POST] - You don't have to use this endpoint manually since the other service uses it to upload to Cloudinary once the audio
 buffer is ready.
-2. http://localhost:3003/api/v1/covert [POST] - This is used to upload the video and add the job into the job queue for conversion.
-3. http://localhost:3003/api/v1/convert [GET] - This is used to learn the status of the a job inside the job queue using a job ID that is provided as a parameter.
+2. http://localhost:3003/api/v1/covert [POST] - This is used to upload the video and add the job to the job queue for conversion.
+3. http://localhost:3003/api/v1/convert [GET] - This is used to learn the job status inside the job queue using a job ID provided as a parameter.
 
 ### API Endpoints
-You can use the shared postman API Documetation via Gmail.
+You can use the shared Postman API documentation via Gmail.
 
 ### Rate Limiting
 The application implements rate limiting to restrict the number of requests from a single IP address to 100 requests every 15 minutes. This helps prevent abuse of the API.
