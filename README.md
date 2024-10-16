@@ -72,7 +72,10 @@ You can use the shared Postman API documentation via Gmail.
 The application implements rate limiting to restrict the number of requests from a single IP address to 100 requests every 15 minutes. This helps prevent abuse of the API.
 
 ### Clustering
-The application uses Node.js clustering to create multiple worker processes, allowing it to handle concurrent requests efficiently. Each worker process can serve requests independently.
+
+Docker Swarm: You can deploy multiple replicas of your service, which allows Docker to manage load balancing and scaling. Example command: docker service create --name myapp --replicas 4 -p 3003:3003 myapp
+
+Kubernetes: Provides advanced orchestration features and is suitable for managing complex applications.
 
 ### Using Cloudinary
 Cloudinary Integration: The application uses Cloudinary to store the converted audio files. After processing the audio, the file is uploaded to Cloudinary, and the URL of the uploaded file is returned in the response.
