@@ -1,0 +1,34 @@
+services:
+  videotoaudio:
+    build:
+      context: ./videotoaudio
+    ports:
+      - "3003:3003"
+    volumes:
+      - ./videotoaudio:/app
+    environment:
+      # Define any necessary environment variables
+      REDIS_LOCAL_HOST: redis
+      REDIS_LOCAL_PORT: 6379
+      NODE_ENV: local
+      PORT: 3003
+      UPLOADER_URL: http://uploadtostorage:3002/api/v1/uploader/
+
+  uploadtostorage:
+    build:
+      context: ./uploadtostorage
+    ports:
+      - "3002:3002"
+    volumes:
+      - ./uploadtostorage:/app
+    environment:
+      CLOUDINARY_CLOUD_NAME: dxw1bya2v
+      CLOUDINARY_API_KEY: 225341641339217
+      CLOUDINARY_API_SECRET: AMqmcccZKbZRlVKiTkt0OI_DPMI
+      PORT: 3002
+      NODE_ENV: local
+
+  redis:
+    image: "redis:alpine"
+    ports:
+      - "6379:6379"
