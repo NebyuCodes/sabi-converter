@@ -27,6 +27,8 @@ A Node.js application that converts video files to audio format using FFmpeg, wi
 - Integration with Cloudinary for cloud storage of audio files.
 
 ## Technologies Used
+Run npm install in each services folder before you build the Docker Images using docker-compose in addition to creating
+an empty dist folder inside each of them. This will help Docker to compile TypeScript code and put it inside dist folder.
 
 - Node.js
 - Express
