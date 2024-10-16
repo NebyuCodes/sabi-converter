@@ -7,10 +7,4 @@ v2.config({
   api_secret: configs.cloudinary.secret,
 });
 
-// v2.config({
-//   cloud_name: "dxw1bya2v",
-//   api_key: "225341641339217",
-//   api_secret: "AMqmcccZKbZRlVKiTkt0OI_DPMI",
-// });
-
 export { v2 as cloudinary };
